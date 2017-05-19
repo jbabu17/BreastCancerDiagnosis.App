@@ -1,0 +1,62 @@
+﻿<Window x:Class="BreastCancerDiagnosis.App.Views.DiagnosisDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:viewmodel="clr-namespace:BreastCancerDiagnosis.App.ViewModels"
+        Title="Breast Cancer Diagnosis" Height="600" Width="500"
+        DataContext ="{Binding Source={StaticResource MainViewModelLocator}, Path=DiagnosisDetailViewModel}"
+        >
+
+    <Window.InputBindings>
+        <KeyBinding Key="D" Modifiers="Control" Command="{Binding DeleteCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"/>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </Window.Resources>   
+    
+    <ScrollViewer>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="{Binding SelectedDiagnosis.ImageId, Converter={StaticResource LocalImageConverter}}"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="10"/>
+        <Label Grid.Row="1"  Content="Id" FontWeight="Bold"/>
+        <Label Grid.Row="2"  Content="Name" FontWeight="Bold"/>
+        <Label Grid.Row="3"  Content="Description" FontWeight="Bold"/>
+        <Label Grid.Row="4"  Content="Type" FontWeight="Bold"/>
+        <Label Grid.Row="5"  Content="Cost" FontWeight="Bold"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedDiagnosis.DiagnosisId, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedDiagnosis.DiagnosisName, Mode=TwoWay}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedDiagnosis.Description, Mode=TwoWay}" TextWrapping="WrapWithOverflow"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SelectedDiagnosis.DiagnosisType, Mode=TwoWay}"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SelectedDiagnosis.Cost, Mode=TwoWay}"/>
+
+        <StackPanel Grid.Row="8" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Button Content="Save Diagnosis" Command="{Binding SaveCommand}" ></Button>
+            <TextBlock Text="    "/>
+            <Button Content="Delete Diagnosis" Command="{Binding DeleteCommand}"></Button>
+        </StackPanel>
+    </Grid>
+        </ScrollViewer>
+</Window>

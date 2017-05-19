@@ -1,0 +1,7 @@
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\bin\Debug\BreastCancerDiagnosis.DAL.dll
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\bin\Debug\BreastCancerDiagnosis.DAL.pdb
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\bin\Debug\BreastCancerDiagnosis.Model.dll
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\bin\Debug\BreastCancerDiagnosis.Model.pdb
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\obj\Debug\BreastCancerDiagnosis.DAL.csprojResolveAssemblyReference.cache
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\obj\Debug\BreastCancerDiagnosis.DAL.dll
+C:\Users\ussivjan\Desktop\Practice_wpf\z_CodeProject\BreastCancerDiagnosis.App\BreastCancerDiagnosis.DAL\obj\Debug\BreastCancerDiagnosis.DAL.pdb

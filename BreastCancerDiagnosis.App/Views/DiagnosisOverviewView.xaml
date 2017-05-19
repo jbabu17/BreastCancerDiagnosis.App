@@ -1,0 +1,109 @@
+﻿<Window x:Class="BreastCancerDiagnosis.App.Views.DiagnosisOverviewView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Breast Cancer Diagnosis" Height="500" Width="800"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:viewmodel="clr-namespace:BreastCancerDiagnosis.App.ViewModels"
+        DataContext ="{Binding Source={StaticResource MainViewModelLocator}, Path=DiagnosisOverviewViewModel}"
+        >
+   
+    <Window.InputBindings>
+        <KeyBinding Key="E" Modifiers="Control" Command="{Binding EditCommand}"/>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Row="0" Grid.Column="0" 
+                  ItemsSource="{Binding Diagnoses}" 
+                  SelectedItem="{Binding SelectedDiagnosis}"
+                  Name="DiagnosisListView" 
+                  HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#CCCCCC" BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="15"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="3" Source="{Binding ImageId, Converter={StaticResource LocalImageConverter}}"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="5"/>
+                            <Label Content="{Binding DiagnosisName}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="2"
+                                       FontSize="14"
+                                       FontWeight="Bold"/>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                <Label Content="Type:"/>
+                                <Label Content="{Binding DiagnosisType}"/>
+                            </StackPanel>
+                            <Label Content="{Binding Cost, Converter={StaticResource LocalPriceConverter}}" 
+                                   Grid.Row="1" 
+                                   Grid.Column="2"
+                                   HorizontalAlignment="Right"/> 
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ScrollViewer Grid.Row="0" Grid.Column="1" >
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding SelectedDiagnosis.ImageId, Converter={StaticResource LocalImageConverter}}"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="8"/>
+            <Label Grid.Row="1"  Content="Id" FontWeight="Bold"/>
+            <Label Grid.Row="2"  Content="Name" FontWeight="Bold"/>
+            <Label Grid.Row="3"  Content="Description" FontWeight="Bold"/>
+            <Label Grid.Row="4"  Content="Type" FontWeight="Bold"/>
+            <Label Grid.Row="5"  Content="Cost" FontWeight="Bold"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedDiagnosis.DiagnosisId, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedDiagnosis.DiagnosisName, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedDiagnosis.Description, Mode=TwoWay}" TextWrapping="WrapWithOverflow"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedDiagnosis.DiagnosisType, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding SelectedDiagnosis.Cost, Converter={StaticResource LocalPriceConverter}, Mode=TwoWay}"/>
+            
+            <StackPanel Grid.Row="6" Grid.ColumnSpan="2">
+                <Button Content="Edit Diagnosis" Command="{Binding EditCommand}" HorizontalAlignment="Center"/>
+            </StackPanel>
+            
+        </Grid>
+        </ScrollViewer>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,14 @@
+﻿<Application x:Class="BreastCancerDiagnosis.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BreastCancerDiagnosis.App"
+             xmlns:converter="clr-namespace:BreastCancerDiagnosis.App.Converters"
+             StartupUri="Views/DiagnosisOverviewView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:ViewModelLocator x:Key ="MainViewModelLocator" />
+            <converter:PriceConverter x:Key="LocalPriceConverter"></converter:PriceConverter>
+            <converter:ImageConverter x:Key="LocalImageConverter"></converter:ImageConverter>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
