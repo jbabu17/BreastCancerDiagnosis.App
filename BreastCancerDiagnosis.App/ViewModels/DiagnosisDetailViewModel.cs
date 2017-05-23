@@ -18,7 +18,6 @@ namespace BreastCancerDiagnosis.App.ViewModels
         private IDialogService dialogService;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         public void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -28,7 +27,6 @@ namespace BreastCancerDiagnosis.App.ViewModels
         }
 
         public ICommand SaveCommand { get; set; }
-
         public ICommand DeleteCommand { get; set; }
 
         private Diagnosis selectedDiagnosis;
@@ -42,11 +40,12 @@ namespace BreastCancerDiagnosis.App.ViewModels
             }
         }
 
-        public DiagnosisDetailViewModel()
+        public DiagnosisDetailViewModel(IDiagnosisDataService diagnosisDataService, IDialogService dialogService)
         {
+            this.diagnosisDataService = diagnosisDataService;
+            this.dialogService = dialogService;
+
             Messenger.Default.Register<Diagnosis>(this, OnDiagnosisReceived);
-            
-            diagnosisDataService = new DiagnosisDataService();
 
             SaveCommand = new CustomCommand(SaveDiagnosis, CanSaveDiagnosis);
             DeleteCommand = new CustomCommand(DeleteDiagnosis, CanDeleteDiagnosis);

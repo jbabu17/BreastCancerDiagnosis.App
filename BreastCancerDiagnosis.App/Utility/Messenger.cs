@@ -18,7 +18,7 @@ namespace BreastCancerDiagnosis.App.Utility
         private static Messenger _instance;
 
         /// <summary>
-        /// Gets the single instance of the Messenger.
+        /// Gets the single instance of the Messenger - singleton
         /// </summary>
         public static Messenger Default
         {

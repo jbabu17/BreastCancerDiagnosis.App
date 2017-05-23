@@ -8,5 +8,6 @@ namespace BreastCancerDiagnosis.App.Messages
 {
     class UpdateListMessage
     {
+        // you can customize the message you want to pass 
     }
 }

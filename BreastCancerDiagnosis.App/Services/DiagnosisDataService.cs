@@ -10,11 +10,11 @@ namespace BreastCancerDiagnosis.App.Services
 {
     public class DiagnosisDataService : IDiagnosisDataService
     {
-        //IDiagnosisRepository repository;
-        IDiagnosisRepository repository = new DiagnosisRepository();
+        IDiagnosisRepository repository;
+        //IDiagnosisRepository repository = new DiagnosisRepository();
 
-        //public DiagnosisDataService(IDiagnosisRepository repository)
-        public DiagnosisDataService()
+        public DiagnosisDataService(IDiagnosisRepository repository)
+        //public DiagnosisDataService()
         {
             this.repository = repository;
         }

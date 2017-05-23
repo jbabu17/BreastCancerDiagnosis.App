@@ -10,7 +10,12 @@ namespace BreastCancerDiagnosis.App.Services
 {
     public class DialogService : IDialogService
     {
-        Window diagnosisDetailView = null; 
+        Window diagnosisDetailView = null;
+
+        public DialogService()
+        {
+                
+        }
 
         public void ShowDetailDialog()
         {

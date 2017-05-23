@@ -6,7 +6,12 @@
         xmlns:viewmodel="clr-namespace:BreastCancerDiagnosis.App.ViewModels"
         DataContext ="{Binding Source={StaticResource MainViewModelLocator}, Path=DiagnosisOverviewViewModel}"
         >
-   
+    <!--
+    <Window.DataContext>
+        <viewmodel:DiagnosisOverviewViewModel></viewmodel:DiagnosisOverviewViewModel>
+    </Window.DataContext>
+    -->
+    
     <Window.InputBindings>
         <KeyBinding Key="E" Modifiers="Control" Command="{Binding EditCommand}"/>
     </Window.InputBindings>

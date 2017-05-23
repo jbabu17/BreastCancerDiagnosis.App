@@ -19,8 +19,8 @@ namespace BreastCancerDiagnosis.App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IDiagnosisDataService diagnosisDataService;
-        //private IDialogService dialogService;
-        private DialogService dialogService = new DialogService();
+        private IDialogService dialogService;
+        //private DialogService dialogService = new DialogService();
 
         public ICommand EditCommand { get; set; }
 
@@ -45,13 +45,19 @@ namespace BreastCancerDiagnosis.App.ViewModels
             }
         }
 
-        public DiagnosisOverviewViewModel()
+        // ctor injection
+        public DiagnosisOverviewViewModel(IDiagnosisDataService diagnosisDataService, IDialogService dialogService)
         {
-            diagnosisDataService = new DiagnosisDataService();
-            //dialogService = new DialogService();
+            this.diagnosisDataService = diagnosisDataService;
+            this.dialogService = dialogService;
             LoadData();
             LoadCommands();
             Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
+        }
+
+        private void LoadData()
+        {
+            Diagnoses = diagnosisDataService.GetAllDiagnoses().ToObservableCollection();
         }
 
         private void OnUpdateListMessageReceived(UpdateListMessage obj)
@@ -62,7 +68,7 @@ namespace BreastCancerDiagnosis.App.ViewModels
 
         private void LoadCommands()
         {
-            EditCommand = new CustomCommand(EditDiagnosis, CanEditDiagnosis);
+            EditCommand = new CustomCommand(EditDiagnosis, CanEditDiagnosis); // execute, canExecute
         }
 
         
@@ -70,6 +76,7 @@ namespace BreastCancerDiagnosis.App.ViewModels
         {
             // Messenger - broadcast SelectedDiagnosis
             Messenger.Default.Send<Diagnosis>(selectedDiagnosis);
+
             // open the dialog for Detailed view
             dialogService.ShowDetailDialog(); 
         }
@@ -81,11 +88,6 @@ namespace BreastCancerDiagnosis.App.ViewModels
                 return true;
             else
                 return false;
-        }
-
-        private void LoadData()
-        {
-            Diagnoses = diagnosisDataService.GetAllDiagnoses().ToObservableCollection();
         }
 
         public void RaisePropertyChanged(string propertyName)
