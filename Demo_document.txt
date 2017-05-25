@@ -1,0 +1,60 @@
+
+System Demo: BreastCancerDiagnosisApp (5/24/2017)
+
+WPF Concepts to explain: 
+
+- Data Binding
+	- datacontext -> View Models
+	- non MVVM way: use the .cs file to set the DataContext to an object of the Diagnosis class
+	- Observable collection  - ItemsSource
+		- Repo : List of diagnosis objects 
+		- VM : Observable collection (Diagnoses) + INPC
+		- Overview view : List view - ItemsSource(binding to Diagnoses)
+		- Item template - dataTemplate
+		
+- Converters 
+	- IValueConverter: convert / convertBack(2-way)
+	- price / image converters
+	
+- ViewModels
+	- INPC, properties - Diagnosis/selectedDiagnosis
+	- ctor: load data() -> data service; 
+	- extension methods
+
+- View Model Locator: links the views and view models
+
+----------------------------------------------------------------------------------------------
+
+- Communication:
+- ICommand
+	- Utility - CustomCommand.cs
+	- Edit:
+		- 1. enable the button, 2. Open a dialog for detailview, 3. pass on selected Object
+		
+	- Save/delete:
+		- interact and update the model info
+	
+ - messenger
+	Edit:
+		- overviewVM : Messenger.send-> selectedDiagnosis
+		- detailVM: 1. ctor : register to receive selectedDiagnosis and set local property
+	
+ - services
+	- dataService : Has instance of repository
+	
+	- services hooked to the Viewmodels: Ctor injection / Interfaces
+		 - easy to unit test: because we can create mock versions (learn more..)
+	
+	- ViewModel only knows that it needs to delete / save a Diagnosis, but does not know how to do it. service instance created in ctor, invokes necessary methods in the repository to perform save/delete operations
+	
+--------------------------------------------------------------------
+
+Comments : (Ajay/Joe)
+
+ - VM communications can be handled by inbuilt prism functionalities
+ - Services : handled using SOA WCF
+ - spinning up new service instances in VMLocator, is usually taken care by IoC containers
+ - Labels are best used with partnered with Buttons; TextBlock will be more appropriate and has multiple functionalities
+	
+	
+ 
